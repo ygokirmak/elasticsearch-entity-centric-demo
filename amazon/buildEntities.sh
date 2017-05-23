@@ -2,9 +2,8 @@ echo "Indexing reviewer entity profiles from review event data"
 es_host="http://localhost:9200"
 updateScriptID=ReviewerProfileUpdater
 
-
 curl -X DELETE "$es_host/reviewers"
-curl -XPOST    "$es_host/reviewers" -d '
+curl -XPUT    "$es_host/reviewers" -H 'Content-Type: application/json' -d '
 {
    "settings" : {
         "number_of_shards" : 1,
@@ -75,6 +74,6 @@ curl -XPOST    "$es_host/reviewers" -d '
             }
         }        
     }        
-}    
+}
 '
 python ../ESEntityCentricIndexing.py reviews review eventQuery.json reviewerId reviewers reviewer $updateScriptID -scriptMode incremental

@@ -33,19 +33,20 @@ def generate_actions():
             "_id": lastEntityId,
             "scripted_upsert":True,
             # In elasticsearch >=2.0
-            #"script": {
-            #    "file": args.updateScriptFile,
-            #            "params": {
-            #                "scriptMode": args.scriptMode,
-            #                "events":list(events)
-            #            }
-            #},
-            # In elasticsearch <2.0
-            "script": args.updateScriptFile,
-            "params": {
-                "scriptMode": args.scriptMode,
-                "events":list(events)
+            "script": {
+                "file": args.updateScriptFile,
+                "lang": "groovy",
+                "params": {
+                    "scriptMode": args.scriptMode,
+                    "events":list(events)
+                }
             },
+            # In elasticsearch <2.0
+            #"script": args.updateScriptFile,
+            #"params": {
+            #    "scriptMode": args.scriptMode,
+            #    "events":list(events)
+            #},
             
             "upsert" : {
             # Use a blank document because script does all the initialization
