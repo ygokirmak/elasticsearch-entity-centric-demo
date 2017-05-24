@@ -35,11 +35,10 @@ def generate_actions():
             # In elasticsearch >=2.0
             "script": {
                 "file": args.updateScriptFile,
-                "lang": "groovy",
-                "params": {
-                    "scriptMode": args.scriptMode,
-                    "events":list(events)
-                }
+                        "params": {
+                            "scriptMode": args.scriptMode,
+                            "events":list(events)
+                        }
             },
             # In elasticsearch <2.0
             #"script": args.updateScriptFile,

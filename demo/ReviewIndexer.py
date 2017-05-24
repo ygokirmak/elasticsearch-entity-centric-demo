@@ -7,7 +7,7 @@ import StringIO
 
 filename = 'anonreviews.csv.zip'
 es = Elasticsearch()
-indexName = "reviews"
+indexName = "anonreviews"
 actionsPerBulk=5000
 es.indices.delete(index=indexName, ignore=[400, 404])
 indexSettings = {
@@ -20,10 +20,10 @@ indexSettings = {
             "properties": {
 
                 "reviewerId": {
-                    "type": "string", "index":"not_analyzed"
+                    "type": "keyword"
                 },
                 "vendorId": {
-                    "type": "string", "index":"not_analyzed"
+                    "type": "keyword"
                 },
                 "date": {
                     "type": "date",
