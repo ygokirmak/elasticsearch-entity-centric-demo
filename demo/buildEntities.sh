@@ -40,4 +40,4 @@ curl -XPUT    "$es_host/reviewers" -d '
     }
 }    
 '
-python ../ESEntityCentricIndexing.py anonreviews review eventQuery.json reviewerId reviewers reviewer $updateScriptID -scriptMode incremental
+python ../ESEntityCentricIndexing.py anonreviews eventQuery.json reviewerId reviewers reviewer $updateScriptID -scriptMode incremental -eventDocType review

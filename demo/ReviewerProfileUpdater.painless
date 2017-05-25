@@ -22,8 +22,6 @@
 		//initialize entity state
 		docSrc.vendors = [];
 		docSrc.profile = "newbie";
-//    docSrc.create_date = params.current_date;
-    docSrc.create_date = "2006-04-07 17:08";
 	}    
 	
     // Convert seller array into map for ease of manipulation

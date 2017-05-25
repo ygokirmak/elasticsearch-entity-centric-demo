@@ -10,13 +10,13 @@ import json
 
 parser = argparse.ArgumentParser()
 parser.add_argument("eventIndexName", help="The name of the index which will receive events")
-parser.add_argument("eventDocType", help="Name of the event type")
 parser.add_argument("eventQueryFile", help="The JSON file with the query for events")
 parser.add_argument("entityIdField", help="The name of the field with the entity ID")
 parser.add_argument("entityIndexName", help="The name of the index which will build entities")
 parser.add_argument("entityDocType", help="Name of the entity type")
 parser.add_argument("updateScriptFile", help="The script file used to update entities with events")
 
+parser.add_argument("-eventDocType", help="Name of the event type", default="")
 parser.add_argument("-actionsPerBulk", help="The number of records to send in each bulk request", type=int, default=5000)
 parser.add_argument("-eventsPerScrollPage", help="The number of events per scroll page (small=slow)",  type=int, default=5000)
 parser.add_argument("-maxTimeToProcessScrollPage", help="The max time to process page of events",  default="1m")
