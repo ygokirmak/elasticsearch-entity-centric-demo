@@ -1,11 +1,11 @@
 {
-	"sort": [{
-		"session_id.keyword": {
-			"order": "asc"
-		}
-	},{
-		"create_date": {
-			"order": "asc"
-		}
-	}]
+        "sort": [{
+                "session_id.keyword": {
+                        "order": "asc"
+                }
+        },{
+                "create_date.keyword": {
+                        "order": "asc"
+                }
+        }]
 }

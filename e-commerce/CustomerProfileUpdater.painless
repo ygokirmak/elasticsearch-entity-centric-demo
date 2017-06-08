@@ -1,34 +1,9 @@
-//====================================
-//===    Reviewer-centric object =====
-//====================================
-// This script summarises the reviews
-// made by a single marketplace reviewer.
-// A profile is determined:
-// "newbie" - less than 5 reviews
-// "regular" - more than 5 reviews
-// "fanboy" - > 5 reviews, all positive, 
-//            always for the same vendor
-// "hater" - > 5 reviews, all negative, 
-//            always for the same vendor
-// "unlucky" - > 5 reviews, mainly negative, 
-//            across multiple vendors
-//====================================
+//Copy doc source to local variable with shorter name
 
-   
-  //Copy doc source to local variable with shorter name
-	def docSrc = ctx._source;
+def docSrc = ctx._source;
     
-	if("create".equals(ctx.op)){
-		//initialize entity state
-		docSrc.events = [];
-	}    
+if("create".equals(ctx.op)){
+	docSrc.events = [];
+}    
 	
-    docSrc.events = params.events;
-
-    // Consolidate latest batch of events
-    for (event in params.events) {
-        if ( "product_view".equals(event.event_name) ) {
-            docSrc.last_viewed_product = event.sku;
-            docSrc.last_viewed_product_date = event.create_date;            
-        }        
-    }
+docSrc.events = params.events;

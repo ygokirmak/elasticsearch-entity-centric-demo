@@ -7,37 +7,19 @@ echo "Deleting old index: customers"
 curl -X DELETE "$es_host/customers"
 echo ""
 echo "Creating new index: customers"
-curl -XPUT    "$es_host/customers" -d '
+curl -XPUT "$es_host/customers?pretty" -H 'Content-Type: application/json' -d'
 {
-   "settings" : {
-        "number_of_shards" : 1,
-        "number_of_replicas" : 0
-    },
-	"mappings":{
-      "customer": {
-        "properties": {
-          "last_viewed_product": {
-            "type": "keyword"
-          },
-          "last_viewed_product_date": {
-            "type": "date",
-            "format" : "yyyy-MM-dd HH:mm"
-          },
-          "events": {
-            "properties": {
-              "event_name": {
-                "type": "keyword"
-              },
-              "date": {
-                "type": "date"
-              }
-            }
-          }
-        }
+  "mappings": {
+    "customer": {
+      "properties": {
+        "banners" : {
+            "type": "nested"
+        } 
       }
     }
-}    
+  }
+}
 '
 echo ""
 echo "Indexing customer entity events from customer event data"
-python ../ESEntityCentricIndexing.py events eventQuery.json session_id customers customer $updateScriptID -scriptMode incremental
+python ../ESEntityCentricIndexing.py logstash-* eventQuery.json session_id customers customer $updateScriptID -scriptMode incremental
